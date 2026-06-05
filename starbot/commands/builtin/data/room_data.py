@@ -119,7 +119,9 @@ async def room_data(app: Ariadne, source: Source, sender: Union[Friend, Group]):
         # 底部版权信息，请务必保留此处
         pic.draw_text("")
         pic.draw_text_right(25, "Designed By StarBot", Color.GRAY)
+        pic.draw_text_right(25, "本项目为开源项目禁止倒卖", Color.PINK)
         pic.draw_text_right(25, "https://github.com/Starlwr/StarBot", Color.LINK)
+        pic.draw_text_right(25, "本机器人由猫猫进行维护", Color.DEEPSKYBLUE)
         pic.crop_and_paste_bottom()
 
         await app.send_message(sender, MessageChain(Image(base64=pic.base64())))
