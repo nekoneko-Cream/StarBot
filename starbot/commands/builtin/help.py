@@ -23,7 +23,6 @@ channel = Channel.current()
         listening_events=[FriendMessage, GroupMessage],
         inline_dispatchers=[Twilight(
             ElementMatch(At, optional=True),
-            FullMatch(prefix),
             UnionMatch("帮助", "菜单", "功能", "命令", "指令", "help")
         )],
     )
@@ -44,8 +43,8 @@ async def _help(app: Ariadne, sender: Union[Friend, Group]):
     pic.draw_chapter("StarBot 帮助")
     pic.draw_text("")
 
-    pic.draw_section(f"1.{prefix}菜单")
-    commands = "、".join([f"{prefix}{x}" for x in ["帮助", "菜单", "功能", "命令", "指令", "help"]])
+    pic.draw_section(f"1.菜单")
+    commands = "、".join([f"{x}" for x in ["帮助", "菜单", "功能", "命令", "指令", "help"]])
     pic.draw_text_multiline(50, ["命令: ", commands], [Color.RED, Color.BLACK])
     pic.draw_tip("获取 Starbot 帮助和命令菜单")
 
@@ -157,7 +156,9 @@ async def _help(app: Ariadne, sender: Union[Friend, Group]):
 
     # 底部版权信息，请务必保留此处
     pic.draw_text_right(25, "Designed By StarBot", Color.GRAY)
+    pic.draw_text_right(25, "本项目为开源项目禁止倒卖", Color.PINK)
     pic.draw_text_right(25, "https://github.com/Starlwr/StarBot", Color.LINK)
+    pic.draw_text_right(25, "本机器人由猫猫进行维护", Color.DEEPSKYBLUE)
     pic.crop_and_paste_bottom()
 
     await app.send_message(sender, MessageChain(Image(base64=pic.base64())))
